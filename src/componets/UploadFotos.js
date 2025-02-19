@@ -16,50 +16,23 @@ export default function UploadFotos() {
 
   const handleImageUpload = (event) => {
     const files = Array.from(event.target.files);
-    setImages(files);
-    console.log(files.length);
-
-    if (images.length + files.length > 10) {
+  
+    // Limite de 10 fotos
+    if (files.length + images.length > 10) {
       alert("Você pode adicionar no máximo 10 fotos.");
       return;
     }
-
-    setModalAvisoEnviarFoto(true);
-
-    
-    
-    /*// Atualiza o estado com as novas imagens
+  
+    // Atualiza o estado com as novas imagens
     setImages((prevImages) => [...prevImages, ...files]);
-
+  
     // Cria pré-visualizações
     const newPreviews = files.map((file) => URL.createObjectURL(file));
     setPreviews((prevPreviews) => [...prevPreviews, ...newPreviews]);
+  
+    setModalAvisoEnviarFoto(true);
   };
-
-  const handleSubmit = async () => {
-    if (images.length === 0) {
-      alert("Selecione pelo menos uma imagem.");
-      return;
-    }
-
-    const formData = new FormData();
-    images.forEach((image) => formData.append("images", image));
-
-    try {
-      const response = await axios.post("http://localhost:5000/upload", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-
-      alert("Upload realizado com sucesso!");
-      console.log("Imagens enviadas:", response.data.files);
-      setImages([]);
-      setPreviews([]);
-    } catch (error) {
-      console.error("Erro ao enviar imagens:", error);
-      alert("Erro ao enviar imagens.");
-    }*/
-  };
-
+  
   useEffect(() => {
     const userLogged = localStorage.getItem("userLogged");
     if (userLogged === "true") {
@@ -84,7 +57,7 @@ export default function UploadFotos() {
     // Inicializa corretamente o FormData antes de usá-lo
     const formData = new FormData();
     images.forEach((image) => formData.append("file", image));
-
+  
     const nomeUsuario = localStorage.getItem("nome") || "Anônimo";
     formData.append("nome", nomeUsuario);
   
@@ -93,16 +66,24 @@ export default function UploadFotos() {
         headers: { "Content-Type": "multipart/form-data" },
       });
   
-      setUploadedImage([...uploadImage, { link: response.data.link, nome: nomeUsuario }]); // Salva o link da imagem enviada
+      // Agora, a resposta contém 'files', não diretamente 'link'
+      setUploadedImage([
+        ...uploadImage,
+        ...response.data.files.map(file => ({
+          link: file.link,
+          nome: file.nome,
+        })),
+      ]);
+  
       alert("Upload realizado com sucesso!");
       setModalAvisoEnviarFoto(false);
       window.location.reload();
-
     } catch (error) {
       console.error("Erro no upload:", error);
       alert("Erro ao enviar imagens.");
     }
   };
+  
 
   // Simulação de login
   const handleLogin = (nomeUsuario) => {
