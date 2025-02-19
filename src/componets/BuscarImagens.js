@@ -12,7 +12,7 @@ export default function BuscarImagens(){
     useEffect(() => {
         const fetchFotos = async () => {
           try {
-            const response = await axios.get("http://localhost:3001/fotos");
+            const response = await axios.get("https://xvdatiffany-backend.onrender.com/fotos");
             setUploadedImage(response.data); // Salva as fotos no estado
             console.log(response.data);
           } catch (error) {
