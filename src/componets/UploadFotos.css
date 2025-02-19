@@ -1,0 +1,49 @@
+.h1Princ{
+    font-size: 80px;
+    color: white;
+}
+
+.container {
+    position: relative;
+    width: fit-content;
+  }
+  
+  .shadow-text {
+    font-size: 100px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 5px 5px 10px rgba(0, 0, 0, 87%);
+  }
+  
+  .script-text {
+    font-family: 'italianno', cursive; /* Usa a fonte manuscrita */
+    font-size: 80px;
+    color: #651515;
+    -webkit-text-stroke: 0.3px white;
+    text-shadow: 5px 5px 5px rgba(247, 246, 246, 0.5);
+    position: absolute;
+    right: 300px;
+    bottom: -30px;
+    transform: rotate(-15deg);
+  }
+  @media (max-width: 768px) {
+    .script-text {
+      right: -10px;
+      bottom: -30px;
+    }
+}
+@media (max-width: 480px) {
+  .script-text {
+      right: 20px;
+      bottom: -20px;
+      font-size: 50px;
+      transform: rotate(-15deg);
+  }
+  .shadow-text{
+    font-size: 60px;
+  }
+}
+
+.pAvisoFotoExcluir{
+  font-size: small;
+}
