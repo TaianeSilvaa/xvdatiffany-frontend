@@ -13,6 +13,7 @@ export default function UploadFotos() {
   const [nome, setNome] = useState("");
   const [modalAvisoEnviarFoto, setModalAvisoEnviarFoto] = useState(false);
   const [uploadImage,setUploadedImage] = useState([]);
+  const [isUploading, setIsUploading] = useState(false);
 
   const handleImageUpload = (event) => {
     const files = Array.from(event.target.files);
@@ -53,6 +54,7 @@ export default function UploadFotos() {
       alert("Selecione pelo menos uma imagem.");
       return;
     }
+    setIsUploading(true); // Desabilita o botão
   
     // Inicializa corretamente o FormData antes de usá-lo
     const formData = new FormData();
@@ -81,6 +83,8 @@ export default function UploadFotos() {
     } catch (error) {
       console.error("Erro no upload:", error);
       alert("Erro ao enviar imagens.");
+    }finally {
+      setIsUploading(false); // Reabilita o botão após a resposta da requisição
     }
   };
   
@@ -138,7 +142,7 @@ export default function UploadFotos() {
           <p className="pAvisoFotoExcluir">Depois de anexar não será possível excluir as fotos.</p>
           <div className="d-flex justify-content-center align-items-center">
             <Button variant="danger" className="m-2" onClick={() => enviarFoto()}>
-              Confirmar
+            {isUploading ? "Enviando..." : "Confirmar"}
             </Button>
             <Button variant="secondary" className="m-2" onClick={() => setModalAvisoEnviarFoto(false)}>
               Cancelar
