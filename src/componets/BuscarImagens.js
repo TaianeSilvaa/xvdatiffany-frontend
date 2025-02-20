@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import './BuscarImagens.css';
 import ModalImagem from "./ModalImagem";
+import 'react-bootstrap';
 
 export default function BuscarImagens(){
     const [uploadImage, setUploadedImage] = useState([]);
@@ -52,7 +53,9 @@ export default function BuscarImagens(){
     return(
         <>
             <div>
-                <span className="fw-bold fs-6">Fotos anexadas:</span>
+                <div className="mt-3 mb-3">
+                    <span className="fw-bold fs-6">Fotos anexadas:</span>
+                </div>
                 <div className="container"> 
                     <div className="row">
                     {uploadImage.map((img, index) => (
