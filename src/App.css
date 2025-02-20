@@ -24,6 +24,6 @@
 }
 @media (max-width: 768px) {
   .fotoFundo {
-    background-position: top;
+    background-position: center top -70px;
   }
 }
