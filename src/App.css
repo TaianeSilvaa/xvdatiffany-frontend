@@ -22,3 +22,8 @@
   background-color: white;
   border-radius: 25%;
 }
+@media (max-width: 768px) {
+  .fotoFundo {
+    background-position: top;
+  }
+}
