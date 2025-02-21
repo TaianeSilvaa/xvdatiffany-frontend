@@ -62,7 +62,7 @@ export default function BuscarImagens(){
                         
                         <div key={index} style={{ textAlign: "center"}} className="col-6">
                             
-                                <img src={img.id} alt="Enviada" width="100%" onClick={() => abrirModal(index)}/>
+                                <img src={img.id} alt="Enviada" width="100%" loading="lazy" onClick={() => abrirModal(index)} />
                             
                             <p className="pEnviadoPor"><strong>Enviado por:</strong> {img.nome}</p>
                         </div>
