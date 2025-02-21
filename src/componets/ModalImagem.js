@@ -45,7 +45,7 @@ const styles = {
     imagem: {
         width: "100%",
         height: "auto",
-        borderRadius: "10px",
+        borderRadius: "10px 10px 0 0",
     },
     closeButton: {
         position: "absolute",
@@ -77,9 +77,11 @@ const styles = {
         transform: "translateY(-50%)",
     },
     enviadorPor:{
-        borderRadius: "10px",
+        borderRadius: "0 0 10px 10px",
         backgroundColor: "#862828",
         color: "white",
         fontSize: "13px",
+        width: "100%",
+        height: "auto",
     },
 };

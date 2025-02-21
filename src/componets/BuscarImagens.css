@@ -3,3 +3,9 @@
     color: white;
     font-size: 10px;
 }
+.imagemPrincipal{
+    border-radius: 10px 10px 0 0;
+}
+.enviadorPorPrincipal{
+    border-radius: 0 0 10px 10px;
+}

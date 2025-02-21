@@ -42,3 +42,9 @@
     bottom: -500px;
   }
 }
+@media (max-width: 480px) {
+  .backgroundBranco{
+   height: 100vh;
+   top: 350px;
+ }
+}
