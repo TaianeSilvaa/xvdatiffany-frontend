@@ -9,6 +9,7 @@ export default function BuscarImagens(){
     const [imagemAtual, setImagemAtual] = useState(null);
     const [indexAtual, setIndexAtual] = useState(0);
     const [nomeAtual, setNomeAtual] = useState("");
+    const [carregando, setCarregando] = useState(true);
 
     useEffect(() => {
         const fetchFotos = async () => {
@@ -18,6 +19,8 @@ export default function BuscarImagens(){
             console.log(response.data);
           } catch (error) {
             console.error("Erro ao buscar fotos:", error);
+          }finally{
+            setCarregando(false);
           }
         };
       
@@ -56,6 +59,16 @@ export default function BuscarImagens(){
                 <div className="mt-3 mb-3">
                     <span className="fw-bold fs-6">Fotos anexadas:</span>
                 </div>
+                
+                {carregando ? (
+                    <div className="loading-text">
+                        Carregando imagens
+                        <span className="dot">.</span>
+                        <span className="dot">.</span>
+                        <span className="dot">.</span>
+                    </div>
+                ) : (
+               
                 <div className="container"> 
                     <div className="row">
                     {uploadImage.map((img, index) => (
@@ -69,6 +82,7 @@ export default function BuscarImagens(){
                     ))}
                     </div>
                 </div>
+                )}
             </div>
             
             <ModalImagem
